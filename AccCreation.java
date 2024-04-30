@@ -6,7 +6,7 @@ class UserData {
     private String name;
     private String dob;
     private String proof;
-    private static int lastaccnum=10006;
+    private static int lastaccnum=10008;
     
     // Constructor
     public UserData(String name, String dob, String proof) {
@@ -79,14 +79,15 @@ public class AccCreation {
         return proof;
     }
 
-    static int accountNoGeneration() {
-    	startingAccountNo++;
-        return startingAccountNo + 1;
-    }  
+//    static int accountNoGeneration() {
+//    	startingAccountNo++;
+//        return startingAccountNo + 1;
+//    }  
 
     public static void main(String[] args) {
 //        UserData user = newUser();
 //        int Dbaccno = user.getAccountNo();
+    	 
      // Create a new user
         UserData DbUsr = newUser();
 
@@ -94,17 +95,21 @@ public class AccCreation {
         String userName = DbUsr.getName();
         String dob = DbUsr.getDOB();
         String proof = DbUsr.getProof();
-        int accnum = DbUsr.getAccountNo();
-        // Print user data 	
+
         System.out.println("Username: " + userName);
         System.out.println("Date of Birth: " + dob);
         System.out.println("Proof: " + proof);
-        System.out.println("Account Number Created: " + accnum);
+    
         
         DbConnection db = new DbConnection();
+     
         System.out.println("DB Inserted Sented!!");
-        db.insert( userName, dob, proof, accnum);
+        db.insertaccdetails( userName, dob, proof);
         System.out.println("Done !!");
+        
+        int lastaccountnumber=db.lastaccnumber();
+        System.out.println("Account Number Created: " + lastaccountnumber);
+        
         
     }
 }
